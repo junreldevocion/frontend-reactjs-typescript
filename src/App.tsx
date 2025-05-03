@@ -12,8 +12,10 @@ function App() {
   const [newUser, setNewUser] = useState({ name: '', email: '' });
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
+  console.log(process.env.REACT_APP_API_URL);
+
   const fetchUsers = () => {
-    fetch('http://localhost:3000/api/users/')
+    fetch(`${process.env.REACT_APP_API_URL}/api/users`)
       .then(res => res.json())
       .then(data => setUsers(data));
   };
@@ -23,14 +25,14 @@ function App() {
   }, []);
 
   const handleDelete = (id: number) => {
-    fetch(`http://localhost:3000/api/users/${id}`, {
+    fetch(`${process.env.API_URL}/api/users/${id}`, {
       method: 'DELETE',
     })
       .then(() => fetchUsers());
   };
 
   const handleUpdate = (user: User) => {
-    fetch(`http://localhost:3000/api/users/${user.id}`, {
+    fetch(`${process.env.API_URL}/api/users/${user.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
