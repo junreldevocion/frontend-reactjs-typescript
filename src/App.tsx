@@ -25,14 +25,14 @@ function App() {
   }, []);
 
   const handleDelete = (id: number) => {
-    fetch(`${process.env.API_URL}/api/users/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/users/${id}`, {
       method: 'DELETE',
     })
       .then(() => fetchUsers());
   };
 
   const handleUpdate = (user: User) => {
-    fetch(`${process.env.API_URL}/api/users/${user.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/users/${user.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function App() {
   };
 
   const handleAdd = () => {
-    fetch('http://localhost:3000/api/users/', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
